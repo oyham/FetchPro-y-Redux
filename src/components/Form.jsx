@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addUserPro } from "../redux/userSlice";
 
 export function Form() {
   const [formData, setFormData] = useState({
@@ -6,6 +8,8 @@ export function Form() {
     username: "",
     email: "",
   });
+  const email = useSelector((state) => state.user.email);
+  const dispatch = useDispatch;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,9 +18,6 @@ export function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Nombre:", formData.name);
-    console.log("Nombre de usuario:", formData.username);
-    console.log("Email:", formData.email);
   };
 
   return (
@@ -39,8 +40,8 @@ export function Form() {
         type="email"
         name="email"
         placeholder="email"
-        value={formData.email}
-        onChange={handleChange}
+        value={email}
+        onChange={(event) => dispatch(addUserPro(event.target.value))}
       />
       <input type="submit" value="Submit" />
     </form>
