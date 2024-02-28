@@ -46,3 +46,12 @@ export function fetchData(url) {
     }); */
   return getSuspender(promise);
 }
+
+//Original
+/* export function fetchData(url) {
+  const promise = fetch(url)
+    .then((response) => response.json())
+    .then((json) => json);
+
+  return getSuspender(promise);
+} */
