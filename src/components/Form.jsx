@@ -8,8 +8,8 @@ export function Form() {
     username: "",
     email: "",
   });
-  const name = useSelector((state) => state.user.name);
-  const email = useSelector((state) => state.user.email);
+  const name = useSelector((state) => state.userPro.name);
+  const email = useSelector((state) => state.userPro.email);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {

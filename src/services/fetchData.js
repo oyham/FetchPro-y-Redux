@@ -1,6 +1,7 @@
-/* import { useDispatch } from "react-redux";
-import { addUser } from "../redux/userSlice"; */
+// import { useDispatch } from "react-redux";
+// import { addUser } from "../redux/userSlice";
 // import { GetRandomUserId } from "../hooks/GetRandomUser";
+// import { addUserPro } from "../redux/userProSlice";
 
 const getSuspender = (promise) => {
   let status = "pending";
@@ -30,28 +31,17 @@ const getSuspender = (promise) => {
 
   return { read };
 };
-
 export function fetchData(url) {
-  // const dispatch = useDispatch();
   const promise = fetch(url)
     .then((response) => response.json())
     .then((json) => json);
-  /* .then((data) => {
-      dispatch(addUser(data));
-      return data;
-    }) */
-  /* .catch((err) => {
-      console.log(err);
-      throw err;
-    }); */
   return getSuspender(promise);
 }
 
-//Original
-/* export function fetchData(url) {
+/* Original
+export function fetchData(url) {
   const promise = fetch(url)
     .then((response) => response.json())
     .then((json) => json);
-
   return getSuspender(promise);
 } */

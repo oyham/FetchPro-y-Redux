@@ -1,5 +1,5 @@
 import { useEffect, Suspense } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "./redux/userSlice";
 import { addUserPro } from "./redux/userProSlice";
 import { GetRandomUserId } from "./hooks/GetRandomUser";
@@ -13,29 +13,24 @@ import "./App.css";
 const apiData = fetchData(
   `https://jsonplaceholder.typicode.com/users/${GetRandomUserId()}`
 );
-
 function App() {
   const dispatch = useDispatch();
   const data = apiData.read();
   dispatch(addUserPro(data));
-  console.log(data);
-
-  /* const fetchDataAndDispatch = async () => {
-    dispatch(addUserPro(data));
-    // console.log(data);
-  }; */
+  console.log("addUserPro", data);
+  // const data = useSelector((state) => state.user);
 
   const fetchData = (userId) => {
     fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
       .then((res) => res.json())
-      .then((data) => dispatch(addUser(data)))
+      .then((data) => dispatch(addUser(data), console.log("fetchData", data)))
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     const initialUserId = GetRandomUserId();
     fetchData(initialUserId);
-    // fetchDataAndDispatch()
+    console.log("useEffect");
   }, []);
 
   const handleUser = () => {
