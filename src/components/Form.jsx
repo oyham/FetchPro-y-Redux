@@ -1,16 +1,13 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { changeName, changeEmail } from "../redux/userProSlice";
+import { useSelector } from "react-redux";
 
 export function Form() {
+  const userPro = useSelector((state) => state.userPro);
   const [formData, setFormData] = useState({
-    name: "",
-    username: "",
-    email: "",
+    name: userPro.name,
+    username: userPro.username,
+    email: userPro.email,
   });
-  const name = useSelector((state) => state.userPro.name);
-  const email = useSelector((state) => state.userPro.email);
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +16,10 @@ export function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const ul = document.getElementById("data-ul");
+    ul.querySelector(".name").textContent = formData.name;
+    ul.querySelector(".username").textContent = formData.username;
+    ul.querySelector(".email").textContent = formData.email;
   };
 
   return (
@@ -27,8 +28,8 @@ export function Form() {
         type="text"
         name="name"
         placeholder="nombre"
-        value={name}
-        onChange={(event) => dispatch(changeName(event.target.value))}
+        value={formData.name}
+        onChange={handleChange}
       />
       <input
         type="text"
@@ -41,8 +42,8 @@ export function Form() {
         type="email"
         name="email"
         placeholder="email"
-        value={email}
-        onChange={(event) => dispatch(changeEmail(event.target.value))}
+        value={formData.email}
+        onChange={handleChange}
       />
       <input type="submit" value="Submit" />
     </form>

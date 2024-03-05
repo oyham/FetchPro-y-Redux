@@ -1,8 +1,3 @@
-// import { useDispatch } from "react-redux";
-// import { addUser } from "../redux/userSlice";
-// import { GetRandomUserId } from "../hooks/GetRandomUser";
-// import { addUserPro } from "../redux/userProSlice";
-
 const getSuspender = (promise) => {
   let status = "pending";
   let response;
@@ -37,11 +32,3 @@ export function fetchData(url) {
     .then((json) => json);
   return getSuspender(promise);
 }
-
-/* Original
-export function fetchData(url) {
-  const promise = fetch(url)
-    .then((response) => response.json())
-    .then((json) => json);
-  return getSuspender(promise);
-} */

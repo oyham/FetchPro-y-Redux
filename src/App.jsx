@@ -1,5 +1,5 @@
 import { useEffect, Suspense } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser } from "./redux/userSlice";
 import { addUserPro } from "./redux/userProSlice";
 import { GetRandomUserId } from "./hooks/GetRandomUser";
@@ -18,7 +18,6 @@ function App() {
   const data = apiData.read();
   dispatch(addUserPro(data));
   console.log("addUserPro", data);
-  // const data = useSelector((state) => state.user);
 
   const fetchData = (userId) => {
     fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
@@ -42,10 +41,10 @@ function App() {
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
         <h2>Petición con fetchData.js</h2>
-        <ul className="card">
-          <li>{data?.name}</li>
-          <li>{data?.username}</li>
-          <li>{data?.email}</li>
+        <ul className="card" id="data-ul">
+          <li className="name">{data?.name}</li>
+          <li className="username">{data?.username}</li>
+          <li className="email">{data?.email}</li>
         </ul>
         <Header />
         <Email />

@@ -5,7 +5,7 @@ export function Header() {
 
   return (
     <header>
-      <h2>Petición con fetch natívo</h2>
+      <h2>Petición con fetch natívo ( tradicional )</h2>
       <ul>
         <li>Name: {user.name}</li>
         <li>Username: {user.username}</li>
